@@ -14,6 +14,7 @@ struct Image {
     int w;  // Width of image
     int h;  // Height of image
     int channels;   // Number of channels of image
+    double* theta = NULL;
 
     // Constructors and Destructors
     Image(const char*);  //a Constructor that takes in only the file name
@@ -50,10 +51,10 @@ struct Image {
 
     // -- Edges
     Image& blur_gaussian();
-    Image& scharr(double threshold);
-    Image& sobel(double threshold);
+    Image& scharr(double threshold=0.09);
+    Image& sobel(double threshold=0.09);
     Image& non_max();
-    Image& double_threshold(double low_r, double high_r, uint8_t strong, uint8_t weak);
-    Image& edge_hysteresis(uint8_t strong, uint8_t weak);
+    Image& double_threshold(double low_r=0.05, double high_r=0.09, uint8_t strong=255, uint8_t weak=25);
+    Image& edge_hysteresis(uint8_t strong=255, uint8_t weak=25);
     Image& canny();
 };
